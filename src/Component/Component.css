@@ -1,0 +1,89 @@
+li{
+    list-style: none;
+    cursor: pointer;
+
+}
+a{
+    text-decoration: none;
+}
+#navbarExample01{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+    
+}
+.nav-item{
+    text-align: center;
+    margin-top: 1px;
+    background-color: white;
+        font-family: "Jersey 15 Charted", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        height: 40px;
+        color: #0072ff;
+        list-style: none;
+}
+.navbar-brand {
+    letter-spacing: 3px;
+    color: #c24244;
+  }
+  
+  .navbar-brand:hover {
+      color: #c24244;
+  }
+  
+  .navbar-scroll .nav-link,
+  .navbar-scroll .fa-bars {
+    color: #7f4722;
+  }
+  
+  .navbar-scrolled .nav-link,
+  .navbar-scrolled .fa-bars {
+    color: #7f4722;
+  }
+  
+  .navbar-scrolled {
+    background-color: #ffede7;
+  }
+  .navbar{
+    background-color: #ffede7;
+  }
+
+h1{
+    text-align: center;
+    color: white;
+    font-size: larger;
+    background-color: rgba(2,151,145);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    width: 300px;
+   
+       
+}
+.info-box{
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    background-color: rgba(2,151,145);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    width: 300px;
+    margin-top: 15px;
+    padding-top: 10px;
+    
+}
+.linkarrow{
+  color: white;
+  
+}
+.imgarrow{
+  height: 30px;
+  color: white;
+}
+
+
+
