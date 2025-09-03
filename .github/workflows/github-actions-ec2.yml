@@ -38,5 +38,7 @@ jobs:
             sudo rm -rf /var/www/html/public /var/www/html/src
             sudo mv public /var/www/html/
             sudo mv src /var/www/html/
+            sudo rm /var/www/html/index.html
+
 
 
