@@ -15,11 +15,6 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v2
         
-     - name: Install and Build
-  run: |
-    npm install
-    CI=false npm run build
-
 
 
       - name: Deploy to Server 1
