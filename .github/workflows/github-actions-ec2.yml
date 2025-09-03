@@ -14,8 +14,6 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-        
-
 
       - name: Deploy to Server 1
         uses: easingthemes/ssh-deploy@main
@@ -36,12 +34,5 @@ jobs:
             sudo apt-get install -y apache2
             sudo systemctl start apache2
             sudo systemctl enable apache2
-           
-            # Remove old files
-            sudo rm -rf /var/www/html/*
-
-            # Copy build output to Apache folder
-            rsync -avz --delete build/ /var/www/html/
-
-
-
+            cd home
+            sudo mv * /var/www/html
