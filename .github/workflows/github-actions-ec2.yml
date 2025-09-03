@@ -14,6 +14,12 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
+          # Build React app
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+
 
       - name: Deploy to Server 1
         uses: easingthemes/ssh-deploy@main
@@ -34,14 +40,12 @@ jobs:
             sudo apt-get install -y apache2
             sudo systemctl start apache2
             sudo systemctl enable apache2
-              # Remove default Apache index
-            sudo rm -f /var/www/html/index.html
+           
+            # Remove old files
+            sudo rm -rf /var/www/html/*
 
-            # Deploy public/ folder contents directly into /var/www/html
-            cd home
-            sudo rsync -avz --delete ./public/ /var/www/html/
-
-
+            # Copy build output to Apache folder
+            rsync -avz --delete build/ /var/www/html/
 
 
 
