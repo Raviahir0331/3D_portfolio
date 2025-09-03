@@ -14,11 +14,11 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-
-          - name: Install and Build React App
         run: |
           npm install
           CI=false npm run build   # disable CI strict mode so eslint warnings don’t break build
+
+
 
 
       - name: Deploy to Server 1
