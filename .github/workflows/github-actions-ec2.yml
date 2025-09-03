@@ -35,4 +35,6 @@ jobs:
             sudo systemctl start apache2
             sudo systemctl enable apache2
             cd home
-            sudo mv * /var/www/html
+   mv -f public /var/www/html/
+mv -f src /var/www/html/
+
