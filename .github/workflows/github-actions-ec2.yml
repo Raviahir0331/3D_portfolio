@@ -34,11 +34,14 @@ jobs:
             sudo apt-get install -y apache2
             sudo systemctl start apache2
             sudo systemctl enable apache2
+              # Remove default Apache index
+            sudo rm -f /var/www/html/index.html
+
+            # Deploy public/ folder contents directly into /var/www/html
             cd home
-            sudo rm -rf /var/www/html/public /var/www/html/src
-            sudo mv public /var/www/html/
-            sudo mv src /var/www/html/
-            sudo rm /var/www/html/index.html
+            sudo rsync -avz --delete ./public/ /var/www/html/
+
+
 
 
 
