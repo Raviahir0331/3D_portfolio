@@ -14,12 +14,6 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-        run: |
-          npm install
-          CI=false npm run build   # disable CI strict mode so eslint warnings don’t break build
-
-
-
 
       - name: Deploy to Server 1
         uses: easingthemes/ssh-deploy@main
@@ -28,7 +22,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
-        TARGET: /home/ubuntu/app
 
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
@@ -41,5 +34,5 @@ jobs:
             sudo apt-get install -y apache2
             sudo systemctl start apache2
             sudo systemctl enable apache2
-           sudo rm -rf /var/www/html/*
-            sudo mv /home/ubuntu/app/build/* /var/www/html/
+            cd home
+            sudo mv * /var/www/html
