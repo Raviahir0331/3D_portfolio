@@ -1,0 +1,46 @@
+name: Deploy React App to EC2
+
+on:
+  push:
+    branches:
+      - main  # change if your default branch is different
+
+jobs:
+  deploy-ec2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React App
+        run: npm run build
+
+      - name: Copy build files to EC2
+        uses: appleboy/scp-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "build/*"
+          target: "/home/ubuntu/3D_portfolio_build"
+
+      - name: Move files to Nginx web root
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo mkdir -p /var/www/html/3D_portfolio
+            sudo cp -r /home/ubuntu/3D_portfolio_build/* /var/www/html/3D_portfolio/
+            sudo chown -R www-data:www-data /var/www/html/3D_portfolio
+            sudo systemctl restart nginx
